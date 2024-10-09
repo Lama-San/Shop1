@@ -6,7 +6,7 @@ public partial class AddItem : ContentPage
 	{
 		InitializeComponent();
 	}
-
+	      
 
 	
 }

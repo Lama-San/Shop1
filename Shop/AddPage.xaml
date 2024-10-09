@@ -4,9 +4,14 @@
              x:Class="Shop.AddPage"
              Title="AddPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        <Entry x:Name="ProductNameEntry" Placeholder="Введите название продукта" HorizontalOptions="FillAndExpand"/>
+
+        <Entry x:Name="ProductPriceEntry" Placeholder="Введите цену продукта"  HorizontalOptions="FillAndExpand" />
+        
+        <Entry x:Name="ProductPriceEntry" Placeholder="Введите отддел для продукта"  HorizontalOptions="FillAndExpand" />
+        
+        
+        
     </VerticalStackLayout>
 </ContentPage>

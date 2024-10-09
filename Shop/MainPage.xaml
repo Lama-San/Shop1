@@ -4,47 +4,31 @@
              x:Class="Shop.MainPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <!--<StackLayout Padding="0,20,0,0">
-            <BoxView Color="Green" Margin="20" />
-            <BoxView Color="Blue" Margin="10, 15" />
-            <BoxView Color="Red" Margin="0, 20, 15, 5" />
-        </StackLayout>-->
-        <SearchBar Placeholder = "search ..." Grid.Column = "0" Grid.ColumnSpan="2"/>
-        <Button Text = "+" Grid.Column = "2" Clicked="Button_Clicked" />
-        <Picker Grid.Column = "4" Title = "sort by">
-            <Picker.Items >
+        <StackLayout Padding="20">
 
-            </Picker.Items>
-        </Picker>
+            <Label Text="Добавить новый продукт" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,20"/>
 
-        <ListView x:Name = "collectionListView">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Label Text="{Binding Name}"/>
+            <SearchBar Placeholder = "Поиск ..." HorizontalOptions="Center" FontSize="20" />
 
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <Button Text="Добавить продукт" BackgroundColor="Green" Clicked="AddProductClicked"/>
+
+            <Button Text="Удалить продукт" BackgroundColor="Red" Clicked="DeleteProductClicked" />
+
+            <Button Text="Редактировать продукт" BackgroundColor="Blue" Clicked="EditProductClicked"/>
+            
+            <Label Text="Список продуктов:" FontSize="20" Margin="0,20,0,0"/>
+
+            
+
+            <ListView x:Name="ProductsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
     </Grid>
 
 </ContentPage>

@@ -2,10 +2,10 @@
 {
     public partial class MainPage : ContentPage
     {
-        private classDb db;
+        private classDb db = new classDb();
         public MainPage()
         {
-            InitializeComponent();
+            
         }
 
         private async void CreateShop(object sender, EventArgs e)
@@ -86,6 +86,11 @@
         private void Button_Clicked(object sender, EventArgs e)
         {
             
+        }
+
+        private async void AddProductClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddPage(db));
         }
     }
 }
