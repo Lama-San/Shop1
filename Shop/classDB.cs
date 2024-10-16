@@ -16,31 +16,34 @@ namespace Shop
         int sectionId = 0;
         int productId = 0;
         public void DB()
-
         {
             Sections = new List<Section>();
             Shops = new List<Shop>();
         }
 
         //Получение сущностей
-        public List<Shop> GetShops()
+        public async Task<List<Shop>> GetShops()
         {
+            await Task.Delay(100);
             return new List<Shop>(Shops);
         }
         //А нужно ли это?
-        public List<Section> GetSections()
+        public async Task<List<Section>> GetSections()
         {
+            await Task.Delay(100);
             return new List<Section>(Sections);
         }
         //Тот же вопрос
-        public List<Product> GetProducts()
+        public async Task<List<Product>> GetProducts()
         {
+            await Task.Delay(100);
             return new List<Product>(Products);
         }
 
         //Добавление сущностей (Переписать то, что связанно с Id. Оно так как щас написанно работать не будет)
-        public void AddShop(Shop shop)
+        public async Task AddShop(Shop shop)
         {
+            await Task.Delay(100);
             Shop newShop = new Shop
             {
                 Image = shop.Image,
@@ -51,8 +54,9 @@ namespace Shop
             this.Shops.Add(newShop);
         }
 
-        public void AddSection(Section section)
+        public async Task AddSection(Section section)
         {
+            await Task.Delay(100);
             Section newSect = new Section 
             { 
                 IdShop = shopId,
@@ -63,8 +67,9 @@ namespace Shop
             this.Sections.Add(newSect);
         }
 
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
+            await Task.Delay(100);
             Product newProd = new Product
             {
                 Id = productId++,
@@ -78,27 +83,31 @@ namespace Shop
         }
 
         //Удаление сущностей
-        public void RemoveShop(Shop shop)
+        public async Task RemoveShop(Shop shop)
         {
+            await Task.Delay(100);
             Shops.Remove(shop);
             UpdateId();
         }
 
-        public void RemoveSection(Section section)
+        public async Task RemoveSection(Section section)
         {
+            await Task.Delay(100);
             Sections.Remove(section);
             UpdateId();
         }
 
-        public void RemoveProduct(Product product)
+        public async Task RemoveProduct(Product product)
         {
+            await Task.Delay(100);
             Products.Remove(product);
             UpdateId();
         }
 
         //Обновление Id( не нужно  )
-        private void UpdateId()
+        private async Task UpdateId()
         {
+            await Task.Delay(100);
             int shopId = 0;
             foreach (var shop in Shops)
             {

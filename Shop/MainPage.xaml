@@ -5,30 +5,47 @@
 
     <Grid>
         <StackLayout Padding="20">
-
-            <Label Text="Добавить новый продукт" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,20"/>
-
-            <SearchBar Placeholder = "Поиск ..." HorizontalOptions="Center" FontSize="20" />
-
-            <Button Text="Добавить продукт" BackgroundColor="Green" Clicked="AddProductClicked"/>
-
-            <Button Text="Удалить продукт" BackgroundColor="Red" Clicked="DeleteProductClicked" />
-
-            <Button Text="Редактировать продукт" BackgroundColor="Blue" Clicked="EditProductClicked"/>
-            
-            <Label Text="Список продуктов:" FontSize="20" Margin="0,20,0,0"/>
-
-            
-
-            <ListView x:Name="ProductsListView">
+            <Label Text="Список Продуктов"/>
+            <ListView>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}"/>
+                        <StackLayout>
+                            <Label Text="{Binding Product}"/>
+                        </StackLayout>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </StackLayout>
 
+        <StackLayout>
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Path = Type }" FontSize = "20"  TextColor = "#006064" Margin="10" />
+                            <Label Text="{Binding Age, StringFormat='Возраст: {0}'}"/>
+                            <Label Text="{Binding Company}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <StackLayout>
+            <CarouselView>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Type}"/>
+                                <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
         </StackLayout>
     </Grid>
-
+    
 </ContentPage>

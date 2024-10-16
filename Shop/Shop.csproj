@@ -63,13 +63,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AddItem.xaml">
+	  <Compile Update="ChoosePage.xaml.cs">
+	    <DependentUpon>ChoosePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="CrProd.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="AddPage.xaml">
+	  <MauiXaml Update="CrSect.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="NewPage1.xaml">
+	  <MauiXaml Update="CrShop.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ChoosePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

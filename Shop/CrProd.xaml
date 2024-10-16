@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shop.CrProd"
+             Title="CrProd">
+    
+    <VerticalStackLayout>
+        <Label Text="Create a new product"/>
+        <Entry x:Name="Name"/>
+        <Entry x:Name="Price"/>
+        <Picker>
+            <Picker.Items>
+                <x:String>18+</x:String>
+                <x:String>Лекарство</x:String>
+                <x:String>Съедобно</x:String>
+                <x:String>Личная гигиена</x:String>
+                <x:String> </x:String>
+            </Picker.Items>
+        </Picker>
+    </VerticalStackLayout>
+</ContentPage>
