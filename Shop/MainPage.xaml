@@ -4,44 +4,58 @@
              x:Class="Shop.MainPage">
 
     <Grid>
-        <StackLayout Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Clicked="AddProductClicked" Text="Выбери чё создать"/>
+        <StackLayout Grid.ColumnSpan="2" Grid.Row="1">
             <Label Text="Список Продуктов"/>
-            <ListView>
+            <ListView ItemsSource="{Binding Products}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Product}"/>
+                        <StackLayout  Orientation="Horizontal">
+                            <Label Text="{Binding Name}"/>
+                            <Button Text="Удалить" Clicked="DeleteProduct" />
                         </StackLayout>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
 
-        <StackLayout>
-            <CollectionView>
+        <StackLayout  Grid.ColumnSpan="2" Grid.Row="2">
+            <Label Text="Список Секций"/>
+            <CollectionView ItemsSource="{Binding Sections}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Path = Type }" FontSize = "20"  TextColor = "#006064" Margin="10" />
-                            <Label Text="{Binding Age, StringFormat='Возраст: {0}'}"/>
-                            <Label Text="{Binding Company}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"/>
+                            <Button Text="Удалить" Clicked="DeleteSection" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
 
-        <StackLayout>
-            <CarouselView>
+        <StackLayout  Grid.ColumnSpan="2" Grid.Row="3">
+            <Label Text="Список Магазинов"/>
+            <CarouselView ItemsSource="{Binding Shops}">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
-                                <Label Text="{Binding Type}"/>
-                                <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
-                            </HorizontalStackLayout>
-                        </Frame>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"/>
+                            <Button Text="Удалить" Clicked="DeleteShop" />
+                        </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>

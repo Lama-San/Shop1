@@ -4,9 +4,18 @@
              x:Class="Shop.CrSect"
              Title="CrSect">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        <Label Text="Create a new section"/>
+        <Picker x:Name="Type" Title="Product Type">
+            <Picker.Items>
+                <x:String>Виноводчная</x:String>
+                <x:String>Дотеры и фрукты</x:String>
+                <x:String>Мясо и молочка</x:String>
+                <x:String>Для протёрки очка</x:String>
+                <x:String>Напитки</x:String>
+                <x:String>Кaнц.лагерь</x:String>
+            </Picker.Items>
+        </Picker>
+        <Label Text="Add product to section"/>
+        
+  </VerticalStackLayout>
 </ContentPage>

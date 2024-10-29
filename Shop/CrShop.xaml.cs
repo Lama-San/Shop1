@@ -17,7 +17,7 @@ public partial class CrShop : ContentPage
         {
             byte[] image = new byte[] { };
             string name = Name.Text;
-            string type = Type1.Text;
+            string type = Type.Text;
 
             var shop = new Shop
             {
@@ -39,7 +39,7 @@ public partial class CrShop : ContentPage
             }
             await db.AddShop(shop);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await DisplayAlert("Ошибка", "Не получилось создать новый магазин!", "Ок");
         }

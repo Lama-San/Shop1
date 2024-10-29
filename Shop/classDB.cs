@@ -87,21 +87,21 @@ namespace Shop
         {
             await Task.Delay(100);
             Shops.Remove(shop);
-            UpdateId();
+            await UpdateId();
         }
 
         public async Task RemoveSection(Section section)
         {
             await Task.Delay(100);
             Sections.Remove(section);
-            UpdateId();
+            await UpdateId();
         }
 
         public async Task RemoveProduct(Product product)
         {
             await Task.Delay(100);
             Products.Remove(product);
-            UpdateId();
+            await UpdateId();
         }
 
         //Обновление Id( не нужно  )

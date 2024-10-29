@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Xml.Linq;
+//using static Android.Preferences.PreferenceActivity;
 
 namespace Shop;
 
@@ -11,7 +12,7 @@ public partial class CrProd : ContentPage
 		InitializeComponent();
 		this.db = db;
 	}
-
+    
     private async void CreateProduct(object sender, EventArgs e)
     {
         try
@@ -19,7 +20,7 @@ public partial class CrProd : ContentPage
             byte[] image = new byte[] { };//Заглушка на время
             int price = int.Parse(Price.Text);
             string name = Name.Text;
-            string type = Type1.Text;//епрвщерпе
+            string type = (string)Type.SelectedItem;
 
             var prod = new Product
             {
@@ -31,7 +32,7 @@ public partial class CrProd : ContentPage
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(type))
             {
-                await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля!", "Ок");
+                await DisplayAlert("Ошибка", "Пожалуйста, заполните поля имени и типа!", "Ок");
                 return;
             }
 
@@ -43,7 +44,7 @@ public partial class CrProd : ContentPage
 
             await db.AddProduct(prod);
         }
-        catch (Exception ex)
+        catch (Exception )
         {
             await DisplayAlert("Ошибка", "Не получилось создать новый продукт!", "Ок");
         }

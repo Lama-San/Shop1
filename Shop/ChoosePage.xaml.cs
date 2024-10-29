@@ -1,15 +1,13 @@
-using Microsoft.UI.Xaml;
 
 namespace Shop;
 
 public partial class ChoosePage : ContentPage
 {
-    private classDb db;
-    public ChoosePage()
+    private readonly classDb db;
+    public ChoosePage(classDb db)
 	{
 		InitializeComponent();
-        db = new classDb();
-        db.DB();
+        this.db = db;
 
     }
     private async void AddShopClicked(object sender, EventArgs e)

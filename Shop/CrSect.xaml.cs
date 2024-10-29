@@ -16,7 +16,7 @@ public partial class CrSect : ContentPage
         try
         {
             byte[] image = new byte[] { };
-            string name = Name.Text;
+            string name = (string)Type.SelectedItem;
 
             var sect = new Section
             {
@@ -24,7 +24,7 @@ public partial class CrSect : ContentPage
                 Image = image, // можно добавить изображение, если нужно
             };
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(type))
+            if (string.IsNullOrEmpty(name))
             {
                 await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля!", "Ок");
                 return;
@@ -37,7 +37,7 @@ public partial class CrSect : ContentPage
 
             await db.AddSection(sect);
         }
-        catch (Exception ex)
+        catch (Exception )
         {
             await DisplayAlert("Ошибка", "Не получилось создать новый магазин!", "Ок");
         }

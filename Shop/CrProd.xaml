@@ -8,14 +8,19 @@
         <Label Text="Create a new product"/>
         <Entry x:Name="Name"/>
         <Entry x:Name="Price"/>
-        <Picker>
+        <Picker x:Name="Type" Title="Product Type">
             <Picker.Items>
                 <x:String>18+</x:String>
                 <x:String>Лекарство</x:String>
                 <x:String>Съедобно</x:String>
                 <x:String>Личная гигиена</x:String>
-                <x:String> </x:String>
+                <x:String>Химия</x:String>
+                <x:String>Алкашка</x:String>
+                <x:String>Гозировка</x:String>
+                <x:String>Вода</x:String>
             </Picker.Items>
         </Picker>
+        <Button/>
+        <Button/>
     </VerticalStackLayout>
 </ContentPage>
