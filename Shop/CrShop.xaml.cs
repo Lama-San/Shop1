@@ -11,7 +11,7 @@ public partial class CrShop : ContentPage
         this.db = db;
     }
 
-    private async void CreateShop(object sender, EventArgs e)
+    async void AddShopClick(object sender, EventArgs e)
     {
         try
         {
@@ -42,6 +42,8 @@ public partial class CrShop : ContentPage
         catch (Exception)
         {
             await DisplayAlert("Ошибка", "Не получилось создать новый магазин!", "Ок");
+            return;
         }
+
     }
 }
