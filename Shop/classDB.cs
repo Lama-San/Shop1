@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,18 +9,19 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace Shop
 {
-    public class classDb
+    public class ClassDb
     {
-        public List<Shop> Shops { get; set; }
-        public List<Section> Sections { get; set; }
-        public List<Product> Products { get; set; }
+        //private List<Shop> Shops = new List<Shop>(); 
+        //private int shopId = 1; 
+
+        private List<Shop> Shops;
+        private List<Product> Products;
         int shopId = 0;
-        int sectionId = 0;
         int productId = 0;
-        public void DB()
+        public ClassDb()
         {
-            Sections = new List<Section>();
             Shops = new List<Shop>();
+            Products = new List<Product>();
         }
 
         //Получение сущностей
@@ -27,12 +30,7 @@ namespace Shop
             await Task.Delay(100);
             return new List<Shop>(Shops);
         }
-        //А нужно ли это?
-        public async Task<List<Section>> GetSections()
-        {
-            await Task.Delay(100);
-            return new List<Section>(Sections);
-        }
+
         //Тот же вопрос
         public async Task<List<Product>> GetProducts()
         {
@@ -40,46 +38,41 @@ namespace Shop
             return new List<Product>(Products);
         }
 
+
         //Добавление сущностей (Переписать то, что связанно с Id. Оно так как щас написанно работать не будет)
         public async Task AddShop(Shop shop)
         {
+
             await Task.Delay(100);
+
             Shop newShop = new Shop
             {
-                Image = shop.Image,
                 Name = shop.Name,
-                Type = shop.Type,
-                Id = shopId++,
+                Id = shopId++
             };
-            this.Shops.Add(newShop);
+
+            this.Shops.Add(newShop); // Добавление нового магазина в коллекцию  
         }
 
-        public async Task AddSection(Section section)
-        {
-            await Task.Delay(100);
-            Section newSect = new Section 
-            { 
-                IdShop = shopId,
-                Id = sectionId++,
-                Type = section.Type,
-                Image = section.Image,
-            };
-            this.Sections.Add(newSect);
-        }
+
 
         public async Task AddProduct(Product product)
         {
+
             await Task.Delay(100);
+
             Product newProd = new Product
             {
                 Id = productId++,
-                IdSection = sectionId,
+                IdShop = shopId,
                 Name = product.Name,
                 Type = product.Type,
                 Price = product.Price,
-                Image = product.Image,
             };
-            this.Products.Add(newProd);
+
+            this.Products.Add(newProd); // Добавление нового продукта в коллекцию
+
+
         }
 
         //Удаление сущностей
@@ -90,12 +83,7 @@ namespace Shop
             await UpdateId();
         }
 
-        public async Task RemoveSection(Section section)
-        {
-            await Task.Delay(100);
-            Sections.Remove(section);
-            await UpdateId();
-        }
+
 
         public async Task RemoveProduct(Product product)
         {
@@ -114,17 +102,89 @@ namespace Shop
                 shop.Id = shopId++;
             }
 
-            int sectionId = 0;
-            foreach (var section in Sections)
-            {
-                section.Id = sectionId++;
-            }
-
             int productId = 0;
             foreach (var product in Products)
             {
                 product.Id = productId++;
             }
+
+        }
+
+        public class MainViewModel : INotifyPropertyChanged
+        {
+            private ClassDb _db; // Хранит ссылку на экземпляр ClassDb
+            public ObservableCollection<Product> _products;
+            public ObservableCollection<Shop> _shops;
+
+            public ObservableCollection<Product> Products
+            {
+                get => _products;
+                set
+                {
+                    _products = value;
+                    OnPropertyChanged(nameof(Products));
+                }
+            }
+
+            public ObservableCollection<Shop> Shops
+            {
+                get => _shops;
+                set
+                {
+                    _shops = value;
+                    OnPropertyChanged(nameof(Shops));
+                }
+            }
+
+            // Конструктор
+            public MainViewModel(ClassDb db)
+            {
+                _db = db; // Сохраняем переданный экземпляр ClassDb
+                Products = new ObservableCollection<Product>();
+                Shops = new ObservableCollection<Shop>();
+                LoadData(); // Загружаем данные после инициализации _db
+            }
+
+            // Метод для загрузки данных
+            private async void LoadData()
+            {
+                var products = await _db.GetProducts(); // Используем _db для получения продуктов
+                var shops = await _db.GetShops(); // Используем _db для получения магазинов
+
+                // Добавляем продукты в коллекцию
+                foreach (var product in products)
+                {
+                    Products.Add(product);
+                }
+
+                // Добавляем магазины в коллекцию
+                foreach (var shop in shops)
+                {
+                    Shops.Add(shop);
+                }
+            }
+
+            public async Task RemoveShop(Shop shop)
+            {
+                await _db.RemoveShop(shop); // Удаляем магазин из базы данных
+                Shops.Remove(shop); // Удаляем магазин из коллекции
+            }
+
+            public async Task RemoveProduct(Product product)
+            {
+                await _db.RemoveProduct(product); // Удаляем продукт из базы данных
+                Products.Remove(product); // Удаляем продукт из коллекции
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
+
+
+
+

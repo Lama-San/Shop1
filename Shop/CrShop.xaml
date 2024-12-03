@@ -10,8 +10,8 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Label x:Name="Name" Text="Название магазина"/>
-        <Entry Text="Введите название"/>
+        <Entry x:Name="ShopName" Text="Введите название"/>
         <Button Text="Добавить" Clicked="AddShopClick"/>
-        <Label x:Name="Type"/>
+      
     </VerticalStackLayout>
 </ContentPage>

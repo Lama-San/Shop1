@@ -5,7 +5,15 @@
              Title="ChoosePage">
     <VerticalStackLayout>
         <Button Text =" Shop " Clicked="AddShopClicked"/>
-        <Button Text="Section" Clicked="AddSectionClicked" />
+        
         <Button Text="Product" Clicked="AddProductClicked"/>
+        <ListView Background="Aqua">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

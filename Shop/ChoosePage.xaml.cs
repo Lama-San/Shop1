@@ -3,8 +3,8 @@ namespace Shop;
 
 public partial class ChoosePage : ContentPage
 {
-    private readonly classDb db;
-    public ChoosePage(classDb db)
+    private readonly ClassDb db;
+    public ChoosePage(ClassDb db)
 	{
 		InitializeComponent();
         this.db = db;
@@ -13,11 +13,6 @@ public partial class ChoosePage : ContentPage
     private async void AddShopClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CrShop(db));
-    }
-
-    private async void AddSectionClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new CrSect(db));
     }
 
     private async void AddProductClicked(object sender, EventArgs e)

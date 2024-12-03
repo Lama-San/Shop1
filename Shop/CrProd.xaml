@@ -20,7 +20,7 @@
                 <x:String>Вода</x:String>
             </Picker.Items>
         </Picker>
-        <Button/>
-        <Button/>
+        <Button Text="Добавить продукт" Clicked="CreateProduct"/>
+        <Button Text="Эээ...отмена(?)"/>
     </VerticalStackLayout>
 </ContentPage>

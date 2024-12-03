@@ -73,9 +73,6 @@
 	  <MauiXaml Update="CrProd.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CrSect.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="CrShop.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
